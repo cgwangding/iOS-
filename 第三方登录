@@ -1,1 +1,5 @@
-1、iOS9 qq登录，网页登录时，无法加载登录页面,解决办法。更新最近的sdk。
+#1、iOS9 qq登录，网页登录时，无法加载登录页面,解决办法。更新最近的sdk。
+#2、手机端没有安装qq以及微博，使用网页登录时，如果先登录QQ，退出然后再点击微博登录按钮，无法弹出微博登录的网页页面。
+  答：在 登录控制器的viewWillAppear:方法中添加代码（    [[[UIApplication sharedApplication].windows firstObject]makeKeyWindow];
+）即可解决。原因：由于使用QQ网页端登录时，qq sdk可能会创建window但是没有进行合理的回收，导致当qq登录页面消失后，主window变成nil,
+再次点击微博登录按钮的时候微博登录页面无法显示在当前的主window上。大概猜测是这个原因。
